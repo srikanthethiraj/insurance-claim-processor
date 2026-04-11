@@ -1,0 +1,20 @@
+INSURANCE CLAIM FORM
+====================
+
+Claimant Name: John Martinez
+Policy Number: POL-2024-55210
+Claim Date: 2024-10-22
+Claim Amount: $8,750.00
+
+Incident Description:
+On October 21, 2024, at approximately 3:45 PM, the insured vehicle (2021 Honda
+Civic, VIN: 1HGBH41JXMN109186) was rear-ended while stopped at a red light at
+the intersection of Main Street and Oak Avenue. The other driver failed to brake
+in time due to wet road conditions. The collision caused significant damage to
+the rear bumper, trunk lid, and tail lights. No injuries were reported. A police
+report was filed (Report #2024-PR-44821).
+
+Repair Estimate: $7,200.00 (from Certified Auto Body Shop)
+Rental Car Costs: $1,550.00 (14 days at $110.75/day)
+
+Supporting documents: police report, repair estimate, rental car receipt, photos.

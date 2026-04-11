@@ -1,0 +1,5 @@
+boto3
+hypothesis
+pytest
+moto
+flask

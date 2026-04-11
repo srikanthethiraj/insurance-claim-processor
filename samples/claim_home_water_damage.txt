@@ -1,0 +1,25 @@
+INSURANCE CLAIM FORM
+====================
+
+Claimant Name: Sarah Chen
+Policy Number: POL-2024-78432
+Claim Date: 2024-11-03
+Claim Amount: $15,200.00
+
+Incident Description:
+On November 2, 2024, a pipe burst in the upstairs bathroom of the insured
+property at 1847 Maple Drive, causing extensive water damage to the bathroom
+floor, the first-floor kitchen ceiling directly below, and the kitchen cabinets.
+The homeowner discovered the leak upon returning from work at approximately
+6:30 PM. An emergency plumber was called to stop the leak and a water mitigation
+company was engaged to begin drying and remediation.
+
+Damage Breakdown:
+- Plumbing repair: $850.00
+- Water mitigation and drying: $3,200.00
+- Bathroom floor replacement: $4,500.00
+- Kitchen ceiling repair: $2,800.00
+- Kitchen cabinet replacement: $3,850.00
+
+Supporting documents: plumber invoice, mitigation company report, contractor
+estimates, photos of damage before and during repair.

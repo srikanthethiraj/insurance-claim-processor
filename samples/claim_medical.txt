@@ -1,0 +1,25 @@
+INSURANCE CLAIM FORM
+====================
+
+Claimant Name: Emily Rodriguez
+Policy Number: POL-2024-91003
+Claim Date: 2024-09-18
+Claim Amount: $4,325.00
+
+Incident Description:
+On September 15, 2024, the claimant slipped on a wet floor at GreenMart
+Grocery Store (location: 320 Commerce Blvd) and sustained a fractured wrist
+(left arm). The store manager confirmed the spill had not been marked with
+warning signs. The claimant was transported to City General Hospital by
+ambulance and received treatment including X-rays, a cast, and pain medication.
+A follow-up appointment is scheduled for October 1, 2024.
+
+Medical Expenses:
+- Ambulance transport: $825.00
+- Emergency room visit: $2,100.00
+- X-rays and imaging: $650.00
+- Cast and supplies: $350.00
+- Prescription medication: $400.00
+
+Supporting documents: hospital records, ambulance bill, pharmacy receipts,
+store incident report, witness statement.
