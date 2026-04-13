@@ -9,14 +9,16 @@ _PLACEHOLDER_RE = re.compile(r"\{(\w+)\}")
 
 # Default templates registered on init
 _DEFAULT_EXTRACTION_TEMPLATE = (
-    "Extract the following fields from the insurance claim document below:\n"
-    "- Claimant Name\n"
-    "- Claim Date\n"
-    "- Claim Amount\n"
-    "- Incident Description\n"
-    "- Policy Number\n\n"
+    "Extract the following fields from the insurance claim document below.\n"
+    "Return ONLY a JSON object with these exact keys:\n"
+    "- claimant_name\n"
+    "- claim_date\n"
+    "- claim_amount\n"
+    "- incident_description\n"
+    "- policy_number\n\n"
+    "If a field cannot be found, set its value to \"not found\".\n\n"
     "Document:\n{document_text}\n\n"
-    "Return the extracted fields in a structured format."
+    "Return ONLY the JSON object, no other text."
 )
 
 _DEFAULT_SUMMARIZATION_TEMPLATE = (

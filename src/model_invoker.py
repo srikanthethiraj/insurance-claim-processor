@@ -1,6 +1,5 @@
 """Model Invoker for the Insurance Claim Processor."""
 
-import json
 import random
 import time
 
@@ -20,7 +19,7 @@ class ModelInvoker:
         self._max_retries = max_retries
 
     def invoke(self, prompt: str, model_id: str) -> InvocationResult:
-        """Send prompt to Bedrock model. Returns response text and latency_ms.
+        """Send prompt to Bedrock model using the Converse API.
 
         Retries up to max_retries on throttling with exponential backoff.
         Raises ModelInvocationError on non-throttle errors or when retries exhausted.
@@ -30,32 +29,28 @@ class ModelInvoker:
         for attempt in range(self._max_retries + 1):
             start = time.monotonic()
             try:
-                body = json.dumps({
-                    "inputText": prompt,
-                    "textGenerationConfig": {"maxTokenCount": 4096},
-                })
-                response = self._client.invoke_model(
+                response = self._client.converse(
                     modelId=model_id,
-                    contentType="application/json",
-                    accept="application/json",
-                    body=body,
+                    messages=[
+                        {
+                            "role": "user",
+                            "content": [{"text": prompt}],
+                        }
+                    ],
+                    inferenceConfig={"maxTokens": 4096},
                 )
                 latency_ms = (time.monotonic() - start) * 1000
-                response_body = json.loads(response["body"].read())
-                response_text = response_body.get("results", [{}])[0].get(
-                    "outputText", ""
-                )
+                response_text = response["output"]["message"]["content"][0]["text"]
                 return InvocationResult(
                     response_text=response_text,
                     latency_ms=latency_ms,
                     model_id=model_id,
                 )
             except ClientError as exc:
-                latency_ms = (time.monotonic() - start) * 1000
                 error_code = exc.response.get("Error", {}).get("Code", "")
                 if error_code == "ThrottlingException" and attempt < self._max_retries:
                     last_error = exc
-                    base_delay = 2 ** attempt  # 1s, 2s, 4s
+                    base_delay = 2 ** attempt
                     jitter = random.uniform(0, base_delay * 0.5)
                     time.sleep(base_delay + jitter)
                     continue
@@ -67,7 +62,6 @@ class ModelInvoker:
                     f"Model '{model_id}' invocation failed: {exc}"
                 ) from exc
 
-        # All retries exhausted
         raise ModelInvocationError(
             f"Model '{model_id}' invocation failed after {self._max_retries} retries: {last_error}"
         )

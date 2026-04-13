@@ -146,15 +146,25 @@ class ClaimProcessor:
 
     def _parse_extracted_fields(self, response_text: str) -> ExtractedFields:
         """Parse model response into ExtractedFields, defaulting missing to 'not found'."""
+        import re
         fields = ExtractedFields()
+        # Strip markdown code blocks (```json ... ``` or ``` ... ```)
+        cleaned = re.sub(r"```(?:json)?\s*", "", response_text).strip()
+        cleaned = re.sub(r"```\s*$", "", cleaned).strip()
         try:
-            data = json.loads(response_text)
+            data = json.loads(cleaned)
             if isinstance(data, dict):
-                fields.claimant_name = data.get("claimant_name", "not found") or "not found"
-                fields.claim_date = data.get("claim_date", "not found") or "not found"
-                fields.claim_amount = data.get("claim_amount", "not found") or "not found"
-                fields.incident_description = data.get("incident_description", "not found") or "not found"
-                fields.policy_number = data.get("policy_number", "not found") or "not found"
+                # Normalize keys: try snake_case and Title Case variants
+                def get(d, *keys):
+                    for k in keys:
+                        if k in d and d[k]:
+                            return d[k]
+                    return "not found"
+                fields.claimant_name = get(data, "claimant_name", "Claimant Name", "claimant")
+                fields.claim_date = get(data, "claim_date", "Claim Date", "date")
+                fields.claim_amount = get(data, "claim_amount", "Claim Amount", "amount")
+                fields.incident_description = get(data, "incident_description", "Incident Description", "description")
+                fields.policy_number = get(data, "policy_number", "Policy Number", "policy")
         except (json.JSONDecodeError, TypeError):
             pass  # Return defaults
         return fields
