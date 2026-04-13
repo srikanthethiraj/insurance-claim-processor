@@ -224,21 +224,21 @@ Run the same claim through multiple AI models to compare performance:
 ```
 Model                                      Latency     Output     Status
 ---------------------------------------- ---------- ---------- ----------
-amazon.titan-text-express-v1                 1243ms  512 chars         OK
-amazon.titan-text-lite-v1                     892ms  387 chars         OK
+amazon.nova-lite-v1:0                        705ms  539 chars         OK
+amazon.nova-micro-v1:0                       517ms  527 chars         OK
 
 Output comparison (first 150 chars each):
 
-[amazon.titan-text-express-v1]
-  Sarah Chen filed a homeowner insurance claim on November 3, 2024, for $15,200
-  in damages resulting from a burst pipe...
+[amazon.nova-lite-v1:0]
+  Jane Smith filed a homeowner insurance claim on November 15, 2024, for $12,500
+  in damages resulting from a severe storm...
 
-[amazon.titan-text-lite-v1]
-  Claim filed by Sarah Chen on 2024-11-03 for water damage totaling $15,200.
-  A pipe burst caused damage to bathroom and kitchen...
+[amazon.nova-micro-v1:0]
+  Claim filed by Jane Smith on 2024-11-15 for storm damage totaling $12,500.
+  A large tree branch fell onto the roof...
 ```
 
-**Why this matters:** Different models have different strengths. The Express model might give more detailed output, while the Lite model is faster and cheaper. This comparison helps you make an informed choice for production use.
+**Why this matters:** Different models have different strengths. Nova Lite gives more detailed output, while Nova Micro is faster and cheaper. This comparison helps you make an informed choice for production use.
 
 ---
 
@@ -320,7 +320,7 @@ This is the step most people miss. You need to explicitly enable the models you 
 3. Make sure you're in the **us-east-1** region (top-right dropdown)
 4. In the left sidebar, click **Model access**
 5. Click **Manage model access**
-6. Find **Amazon → Titan Text G1 - Express** and **Amazon → Titan Text G1 - Lite** and check both boxes
+6. Find **Amazon → Nova Lite** and **Amazon → Nova Micro** and check both boxes
 7. Click **Save changes**
 8. Wait 1-2 minutes for it to activate — the status should change to **Access granted**
 
@@ -373,8 +373,8 @@ You should see output like:
 ```
 Using bucket:  my-claim-docs-test
 Using region:  us-east-1
-Using model:   amazon.titan-text-express-v1
-Comparing:     amazon.titan-text-express-v1, amazon.titan-text-lite-v1
+Using model:   amazon.nova-lite-v1:0
+Comparing:     amazon.nova-lite-v1:0, amazon.nova-micro-v1:0
 ------------------------------------------------------------
 
 [1/3] Uploading sample claim document...
@@ -395,12 +395,12 @@ Comparing:     amazon.titan-text-express-v1, amazon.titan-text-lite-v1
     Jane Smith filed a homeowner insurance claim on November 15, 2024...
 
 [3/3] Model comparison — running 2 models on the same claim...
-  Models: amazon.titan-text-express-v1, amazon.titan-text-lite-v1
+  Models: amazon.nova-lite-v1:0, amazon.nova-micro-v1:0
 
   Model                                      Latency     Output     Status
   ---------------------------------------- ---------- ---------- ----------
-  amazon.titan-text-express-v1                 1243ms  512 chars         OK
-  amazon.titan-text-lite-v1                     892ms  387 chars         OK
+  amazon.nova-lite-v1:0                        705ms  539 chars         OK
+  amazon.nova-micro-v1:0                       517ms  527 chars         OK
 
 ============================================================
 Demo complete. Your claim processor is working.

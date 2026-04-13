@@ -45,12 +45,12 @@ def main():
     parser = argparse.ArgumentParser(description="Test Insurance Claim Processor")
     parser.add_argument("--bucket", required=True, help="S3 bucket name")
     parser.add_argument("--region", default="us-east-1", help="AWS region")
-    parser.add_argument("--model", default="amazon.titan-text-express-v1", help="Primary Bedrock model ID")
+    parser.add_argument("--model", default="amazon.nova-lite-v1:0", help="Primary Bedrock model ID")
     parser.add_argument(
         "--compare-models",
         nargs="*",
-        default=["amazon.titan-text-express-v1", "amazon.titan-text-lite-v1"],
-        help="Model IDs to compare (default: titan-text-express + titan-text-lite)",
+        default=["amazon.nova-lite-v1:0", "amazon.nova-micro-v1:0"],
+        help="Model IDs to compare (default: nova-lite + nova-micro)",
     )
     args = parser.parse_args()
 
